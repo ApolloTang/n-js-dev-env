@@ -1,0 +1,116 @@
+
+https://www.npmjs.org/doc/misc/semver.html
+https://www.npmjs.org/doc/json.html#dependencies
+
+
+:::: what is the different between ^ and ~
+
+    read this:
+    http://fredkschott.com/post/2014/02/npm-no-longer-defaults-to-tildes/
+
+
+    "~" Minor version is preserved:
+
+        kind-of-meaning: Minor version digit will not increase
+
+        Eg:
+            if we specified in package.json with:
+
+                "grunt": "~0.3.5",
+
+            subsequent npm installs would only upgrade to a highest
+            version of 0.3.x. It will not update to 0.4.x.
+
+        ~1.2.3 reads “reasonably close to 1.2.3”
+
+        1.2.3-0 =< allowable version < 1.3.0-0
+
+        ~1.2.3 means [1.2.3, 1.3.0)
+
+
+    "^" Major version is preserved:
+
+        kind-of-meaning: Major version digit will not increase
+
+        ^1.2.3 reads "compatible with 1.2.3"
+
+        1.2.3-0 <= allowable version < 2.0.0-0
+
+        ^1.2.3 means [1.2.3, 2.0.0)
+
+
+    [!] for major version zero (0.x.x), the caret behaves like the
+        tilde, where minor version is preserved
+
+        Both ~0.1.2 and ^0.1.2 will match the most recent 0.1 software
+        but ignore 0.2.x
+
+
+:::: Specifying version
+
+    npm install --save grunt@0.4.2
+
+        will get:
+            "dependencies": {
+                "grunt": "0.4.2"
+            }
+
+
+:::: Specifying version range
+
+    npm install sax@">=0.1.0 <0.2.0"
+
+
+
+
+more note
+---------------------------------------------------------------
+
+:::: The tilde symbol (~)
+
+    use tilde symbol to prevent automatic upgrades of major and
+    minor versions.
+
+    The tilde prefix tells npm that it may only upgrade the given
+    package for increments of the patch version.
+
+    For example:
+
+    if we first installed version 0.3.5 of the grunt module, while
+    also specifying: "grunt": "latest" in our package.json file, subsequent
+    npm installs would want to upgrade to latest version.  This is
+    a problem because if the latest version has an increment in minor
+    version (0.4.x), compatibility will break.
+
+    However, if we instead specified in package.json with approximate
+    version :
+
+        "grunt": "~0.3.5",
+
+    subsequent npm installs would only upgrade us to a highest
+    version of 0.3.x. It will not update to 0.4.x.
+
+
+
+:::: the carret symbol (^)
+
+    ^1.2.3 := >=1.2.3-0 <2.0.0-0
+
+    "Compatible with 1.2.3".
+    When using caret operators, anything from the specified version
+    (including prerelease) will be supported up to, but not including
+     the next major version (or its prereleases). 1.5.1 will satisfy
+    ^1.2.3, while 1.2.2 and 2.0.0-beta will not.
+
+    ^0.1.3 := >=0.1.3-0 <0.2.0-0
+    "Compatible with 0.1.3".
+
+    [!] 0.x.x versions are special:
+        the first non-zero component indicates potentially breaking
+        changes, meaning the caret operator matches any version with
+        the same first non-zero component starting at the specified
+        version.
+
+    ^0.0.2 := =0.0.2
+    "Only the version 0.0.2 is considered compatible"
+
