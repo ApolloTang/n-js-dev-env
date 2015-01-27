@@ -1,0 +1,8 @@
+http://stackoverflow.com/questions/18401934/couldnt-read-dependencies-error-with-npm
+
+
+Problem with not reading the json is linked to permission issues with the file.
+
+Using this command will do the trick:
+
+sudo chown -R $USER:$GROUP ~/.npm
