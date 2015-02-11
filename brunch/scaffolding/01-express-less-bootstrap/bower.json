@@ -1,0 +1,20 @@
+{
+  "name": "design",
+  "version": "1.8.2",
+  "homepage": "https://github.com/amoa/adsushi",
+  "authors": [
+    "derek <derek@addictivemobility.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "bootstrap": "~3.3.2"
+  }
+}

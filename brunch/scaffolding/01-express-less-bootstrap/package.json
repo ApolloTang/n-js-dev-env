@@ -1,0 +1,21 @@
+{
+  "name": "no-name",
+  "version": "0.0.0",
+  "description": "",
+  "main": "brunch-config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "auto-reload-brunch": "1.7.4",
+    "brunch": "1.7.20",
+    "css-brunch": "1.7.0",
+    "jade": "latest",
+    "jaded-brunch": "^1.7.13",
+    "javascript-brunch": "1.7.1",
+    "less-brunch": "^1.8.1"
+  }
+}
