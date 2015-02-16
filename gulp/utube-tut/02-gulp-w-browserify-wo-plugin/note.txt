@@ -1,0 +1,5 @@
+gulp-browserify pluin was blacklisted. Use technique in this demo
+
+
+$ gulp js
+
