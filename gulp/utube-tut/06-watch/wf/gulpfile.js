@@ -9,6 +9,7 @@ var gulp = require('gulp'),
     streamify = require('gulp-streamify'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
+    connect = require('gulp-connect'),
     gulpif = require('gulp-if');
 
 var env = process.env.NODE_ENV || 'development';
@@ -17,7 +18,8 @@ var outputDir = 'builds/development';
 gulp.task('jade', function(){
     return gulp.src('src/templates/**/*.jade')
     .pipe(jade({pretty: true}))
-    .pipe(gulp.dest(outputDir));
+    .pipe(gulp.dest(outputDir))
+    .pipe(connect.reload());
 });
 
 gulp.task('js', function(){
@@ -39,7 +41,8 @@ gulp.task('js', function(){
     .pipe(
         gulpif( env === 'production', streamify(uglify())) // only uglify on production enviroment
      )
-    .pipe(gulp.dest(outputDir));
+    .pipe(gulp.dest(outputDir))
+    .pipe(connect.reload());
 });
 
 gulp.task('sass', function(){
@@ -53,7 +56,8 @@ gulp.task('sass', function(){
     .pipe(sass({errLogToConsole: true}))
     .pipe( gulpif( config.writeSrcMap, sourcemaps.write()))
     // .pipe( gulpif( false, sourcemaps.write()))
-    .pipe(gulp.dest(outputDir));
+    .pipe(gulp.dest(outputDir))
+    .pipe(connect.reload());
 });
 
 gulp.task('watch', function(){
@@ -62,6 +66,15 @@ gulp.task('watch', function(){
     gulp.watch('src/sass/**/*.scss', ['sass']);
 })
 
-gulp.task('default', ['js', 'jade', 'sass', 'watch']);
+gulp.task('connect', function(){
+connect.server({
+        root: outputDir,
+        // open: { browser: 'Google Chrome'}
+        // Option open does not work in gulp-connect v 2.*. Please read "readme" https://github.com/AveVlad/gulp-connect}
+        livereload: true
+    });
+});
+
+gulp.task('default', ['js', 'jade', 'sass', 'watch', 'connect']);
 
 // if you need to run your task synchronously look for plugin called 'run-sequence'
