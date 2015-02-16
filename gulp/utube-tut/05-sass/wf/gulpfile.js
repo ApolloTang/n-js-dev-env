@@ -1,12 +1,14 @@
+/* global */
+'use strict';
+
 var gulp = require('gulp'),
-    jade = require('gulp-jade');
+    jade = require('gulp-jade'),
     browserify = require('browserify'),
     vinylSource = require('vinyl-source-stream'),
-    uglify = require('gulp-uglify')
+    uglify = require('gulp-uglify'),
     streamify = require('gulp-streamify'),
     sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps')
-
+    sourcemaps = require('gulp-sourcemaps'),
     gulpif = require('gulp-if');
 
 var env = process.env.NODE_ENV || 'development';
@@ -45,7 +47,6 @@ gulp.task('sass', function(){
     console.log(env);
     if (env === 'development') { config.writeSrcMap = true; }
     if (env === 'production') { config.writeSrcMap = false; }
-    console.log (config.writeSrcMap)
 
     return gulp.src('src/sass/main.scss')
     .pipe(sourcemaps.init())   // <--- sourcemaps initialize
