@@ -50,7 +50,7 @@ gulp.task('sass', function(){
 
     return gulp.src('src/sass/main.scss')
     .pipe(sourcemaps.init())   // <--- sourcemaps initialize
-    .pipe(sass())
+    .pipe(sass({errLogToConsole: true}))
     .pipe( gulpif( config.writeSrcMap, sourcemaps.write()))
     // .pipe( gulpif( false, sourcemaps.write()))
     .pipe(gulp.dest(outputDir));
