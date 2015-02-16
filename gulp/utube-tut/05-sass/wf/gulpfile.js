@@ -9,14 +9,15 @@ var gulp = require('gulp'),
 
     gulpif = require('gulp-if');
 
+var env = process.env.NODE_ENV || 'development';
+var outputDir = 'builds/development';
 
 gulp.task('jade', function(){
     return gulp.src('src/templates/**/*.jade')
     .pipe(jade({pretty: true}))
-    .pipe(gulp.dest('builds/development'));
+    .pipe(gulp.dest(outputDir));
 });
 
-var env = process.env.NODE_ENV || 'development';
 
 gulp.task('js', function(){
     return browserify({
@@ -37,7 +38,7 @@ gulp.task('js', function(){
     .pipe(
         gulpif( env === 'production', streamify(uglify())) // only uglify on production enviroment
      )
-    .pipe(gulp.dest('builds/development'));
+    .pipe(gulp.dest(outputDir));
 });
 
 gulp.task('sass', function(){
@@ -45,5 +46,5 @@ gulp.task('sass', function(){
     .pipe(sourcemaps.init())   // <--- sourcemaps initialize
     .pipe(sass())
     .pipe(sourcemaps.write())  // <--- sourcemap write
-    .pipe(gulp.dest('builds/development'));
+    .pipe(gulp.dest(outputDir));
 });
