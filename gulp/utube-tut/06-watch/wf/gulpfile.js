@@ -61,3 +61,7 @@ gulp.task('watch', function(){
     gulp.watch('src/js/**/*.js', ['js']);
     gulp.watch('src/sass/**/*.scss', ['sass']);
 })
+
+gulp.task('default', ['js', 'jade', 'sass', 'watch']);
+
+// if you need to run your task synchronously look for plugin called 'run-sequence'
