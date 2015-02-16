@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify')
     streamify = require('gulp-streamify'),
     sass = require('gulp-sass'),
+    sourcemaps = require('gulp-sourcemaps')
 
     gulpif = require('gulp-if');
 
@@ -41,6 +42,8 @@ gulp.task('js', function(){
 
 gulp.task('sass', function(){
     return gulp.src('src/sass/main.scss')
-    .pipe(sass({ sourceComments: 'map'}))  // include source map [this is not working]
+    .pipe(sourcemaps.init())   // <--- sourcemaps initialize
+    .pipe(sass())
+    .pipe(sourcemaps.write())  // <--- sourcemap write
     .pipe(gulp.dest('builds/development'));
 });
