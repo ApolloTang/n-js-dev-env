@@ -18,7 +18,6 @@ gulp.task('jade', function(){
     .pipe(gulp.dest(outputDir));
 });
 
-
 gulp.task('js', function(){
     return browserify({
         entries: ['./src/js/main.js'],
@@ -42,9 +41,16 @@ gulp.task('js', function(){
 });
 
 gulp.task('sass', function(){
+    var config = {};
+    console.log(env);
+    if (env === 'development') { config.writeSrcMap = true; }
+    if (env === 'production') { config.writeSrcMap = false; }
+    console.log (config.writeSrcMap)
+
     return gulp.src('src/sass/main.scss')
     .pipe(sourcemaps.init())   // <--- sourcemaps initialize
     .pipe(sass())
-    .pipe(sourcemaps.write())  // <--- sourcemap write
+    .pipe( gulpif( config.writeSrcMap, sourcemaps.write()))
+    // .pipe( gulpif( false, sourcemaps.write()))
     .pipe(gulp.dest(outputDir));
 });
