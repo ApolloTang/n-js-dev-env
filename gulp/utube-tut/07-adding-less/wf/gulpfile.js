@@ -113,7 +113,11 @@ connect.server({
 
 
 gulp.task('before', function() {
-    console.log('runing task before');
+    setTimeout(function(){
+        return gulp.pipe(function(){
+            console.log('runing task before');
+        })
+    }, 1000);
 });
 
 gulp.task('after', function() {
