@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     connect = require('gulp-connect'),
     argv = require('optimist').argv,
+    runSequence = require('run-sequence'),
     gulpif = require('gulp-if');
 
 var outputDir = 'builds/development';
@@ -110,7 +111,23 @@ connect.server({
     });
 });
 
+
+gulp.task('before', function() {
+    console.log('runing task before');
+});
+
+gulp.task('after', function() {
+    console.log('runing task after');
+});
 // gulp.task('default', ['js', 'jade', 'sass', 'watch', 'connect']);
-gulp.task('default', ['js', 'jade', 'less', 'watch', 'connect']);
+// gulp.task('default', ['js', 'jade', 'less', 'watch', 'connect']);
 
 // if you need to run your task synchronously look for plugin called 'run-sequence'
+
+gulp.task('default', function(callback){
+    runSequence(
+        'before',
+        ['js', 'jade', 'less', 'watch', 'connect'],
+        'after',
+        callback);
+});
