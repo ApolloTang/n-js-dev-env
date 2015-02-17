@@ -72,8 +72,17 @@ gulp.task('less', function(){
     return gulp.src('src/less/main.less')
     .pipe( sourcemaps.init())   // <--- sourcemaps initialize
     .pipe(less())
+    .on('error', function(err){
+        //see //https://github.com/gulpjs/gulp/issues/259
+        console.log(err);
+        this.emit('end');
+    })
+    // NOTE: the following work too
+    // .pipe(less().on('error', function(err){
+    //     console.log(err);
+    //     this.emit('end');
+    // }))
     .pipe( gulpif( config.writeSrcMap, sourcemaps.write()))
-    // .pipe( gulpif( false, sourcemaps.write()))
     .pipe(gulp.dest(outputDir))
     .pipe(connect.reload());
 });
