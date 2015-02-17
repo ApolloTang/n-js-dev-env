@@ -66,10 +66,14 @@ gulp.task('sass', function(){
 gulp.task('less', function(){
     var config = {};
     console.log(env);
+    if (env === 'development') { config.writeSrcMap = true; }
+    if (env === 'production') { config.writeSrcMap = false; }
+
     return gulp.src('src/less/main.less')
-    .pipe(less({
-        // key : value
-     }))
+    .pipe( sourcemaps.init())   // <--- sourcemaps initialize
+    .pipe(less())
+    .pipe( gulpif( config.writeSrcMap, sourcemaps.write()))
+    // .pipe( gulpif( false, sourcemaps.write()))
     .pipe(gulp.dest(outputDir))
     .pipe(connect.reload());
 });
