@@ -11,10 +11,17 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     sourcemaps = require('gulp-sourcemaps'),
     connect = require('gulp-connect'),
+    argv = require('optimist').argv,
     gulpif = require('gulp-if');
 
-var env = process.env.NODE_ENV || 'development';
 var outputDir = 'builds/development';
+
+console.log ('argv: ', argv);
+
+// var env = process.env.NODE_ENV || 'development';
+var env = argv.env || 'development';
+console.log('env: ', env);
+
 
 gulp.task('jade', function(){
     return gulp.src('src/templates/**/*.jade')
