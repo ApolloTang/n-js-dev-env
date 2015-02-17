@@ -1,3 +1,7 @@
-
+instaed of typeing this in comand line
 $ NODE_ENV=production gulp
-$ NODE_ENV=development gulp
+
+you now type
+$ gulp --env production
+
+
