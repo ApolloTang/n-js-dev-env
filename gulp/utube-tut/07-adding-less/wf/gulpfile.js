@@ -26,6 +26,9 @@ var doneInit = false;
 
 gulp.task('initialize', function(cb) {
     // ref: https://github.com/gulpjs/gulp/blob/master/docs/recipes/running-tasks-in-series.md
+
+    // task initalize only done once
+
     console.log('doneInit', doneInit );
     if (!doneInit) {
         var interval = setInterval(function() {
@@ -38,7 +41,7 @@ gulp.task('initialize', function(cb) {
             console.log('done initialize');
             var err = null; // no error
             // if err is not null and not undefined, the orchestration will stop
-            cb(err); // call cb to signal task before is done
+            cb(err); // call cb to signal task initialize is done
         }, 3000)
     } else {
         var err = null; // no error
@@ -50,6 +53,8 @@ gulp.task('before', ['initialize'], function(cb) {
     // ref: https://github.com/gulpjs/gulp/blob/master/docs/recipes/running-tasks-in-series.md
 
     // do stuff -- async or otherwise
+    // will run before task default
+
     var interval = setInterval(function() {
         console.log('working on task before');
     }, 100)
