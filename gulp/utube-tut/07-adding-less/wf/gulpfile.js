@@ -12,7 +12,6 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     connect = require('gulp-connect'),
     argv = require('optimist').argv,
-    runSequence = require('run-sequence'),
     gulpif = require('gulp-if');
 
 var outputDir = 'builds/development';
