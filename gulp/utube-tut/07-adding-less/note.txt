@@ -5,3 +5,7 @@ you now type
 $ gulp --env production
 
 
+
+this project is now in a separate repo called:
+
+    scarffold-less-sass-jade-browserify+synchronous
