@@ -1,0 +1,80 @@
+$ curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  6841  100  6841    0     0  16598      0 --:--:-- --:--:-- --:--:-- 19434
+=> Downloading nvm from git to '/Users/apollotang/.nvm'
+=> Cloning into '/Users/apollotang/.nvm'...
+remote: Counting objects: 3559, done.
+remote: Compressing objects: 100% (17/17), done.
+remote: Total 3559 (delta 5), reused 0 (delta 0), pack-reused 3542
+Receiving objects: 100% (3559/3559), 748.03 KiB | 203.00 KiB/s, done.
+Resolving deltas: 100% (2039/2039), done.
+Checking connectivity... done.
+
+=> Appending source string to /Users/apollotang/.bashrc
+npm ERR! max depth reached: generator-karma@>=0.8.2, required by generator-angular@0.10.0
+=> You currently have modules installed globally with `npm`. These will no
+=> longer be linked to the active version of Node when you install a new node
+=> with `nvm`; and they may (depending on how you construct your `$PATH`)
+=> override the binaries of modules installed with `nvm`:
+
+/usr/local/lib
+├── acs@1.0.21
+├── alloy@1.5.1
+├── appcelerator@0.3.44
+├── atom-package-manager@0.128.0
+├── bower@1.3.12
+├── browserify@8.1.3
+├── brunch@1.7.20
+├── coffee-script@1.8.0
+├── express-generator@4.11.1
+├── generator-angular@0.10.0
+├── generator-angular-bootstrap@0.5.1
+├── generator-backbone@0.3.3
+├── generator-backbone-marionette@0.0.0
+├── generator-backbone-mocha@0.1.1
+├── generator-marionette@0.1.5
+├── generator-mocha@0.1.6
+├── generator-webapp@0.5.1
+├── generator-zf5@0.9.5
+├── grunt-cli@0.1.13
+├── grunt-init@0.3.2
+├── gulp@3.8.11
+├── handlebars@2.0.0
+├── http-server@0.7.4
+├── jade@1.9.1
+├── jake@8.0.12
+├── js-beautify@1.5.4
+├── jshint@2.6.0
+├── jshint-stylish@1.0.0
+├── karma-cli@0.0.4
+├── less@2.4.0
+├── meteorite@0.9.2
+├── mocha@2.1.0
+├── node-inspector@0.9.2
+├── nodemon@1.3.2
+├── npmsearch@0.6.2
+├── protractor@1.6.1
+├── titanium@3.4.1
+├── titanium-code-processor@1.1.1-beta1
+└── yo@1.4.5
+
+=> If you wish to uninstall them at a later point (or re-install them under your
+=> `nvm` Nodes), you can remove them from the system Node as follows:
+
+     $ nvm use system
+     $ npm uninstall -g a_module
+
+=> Close and reopen your terminal to start using nvm
+~/Aa/2-git-repo/AM/adsushi-copy2
+$ npm -v
+2.7.6
+~/Aa/2-git-repo/AM/adsushi-copy2
+$ node -v
+v0.12.2
+~/Aa/2-git-repo/AM/adsushi-copy2
+$ which alloy
+/usr/local/bin/alloy
+~/Aa/2-git-repo/AM/adsushi-copy2
+$
+
