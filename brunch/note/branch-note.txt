@@ -1,0 +1,82 @@
+branch note
+
+Installation:
+
+    In addition to install globally, you should also install
+    branch locally.  This way you can use varous versions of
+    brunch from one pj to another, with no conflicts.
+
+    globally-installed brunch cli will correctly defer to local
+    version.
+
+Skeleton:
+
+    $ brunch new <skeleton git repo> <clone path>
+
+    The above will clone from repo and followed by an npm install...
+
+
+Folder and files:
+
+    app/
+      • Contains the entire source codebase
+      • No third-party JS files that are not designed to be wrappable
+        as CommonJS modules.
+      • Sub-dir: script, style, and template.
+
+    public/
+      • default target folder.
+
+    assets/
+      • its contents copy-pasted (recursively) into the target
+        folder, without any processing.
+
+    vendor/
+     •  Will have its contents concatenated.
+     •  Its script files will not get wrapped in modules.
+        put there third-party libraries that do not play well
+        with being wrapped as modules (no UMD-style loader, etc.).
+     •  House codes that are capable of being wrapped, but as dependency
+        need to be hoisted on globals instead of using require(…)
+
+    Any file whose name starts with an underscore (_) is considered
+    a partial, to be embedded into another file, and is therefore
+    not processed standalone.
+
+    The app, vendor and public folders are considered relative
+    to Brunch’s configuration file.
+
+    Customizing:
+
+        Source paths can be changed through an array of
+        names/paths in the "paths.watched" setting.
+
+        The target folder is set by "paths.public".
+
+        Special-treatment folders are defined
+        through "conventions.assets" and
+        "conventions.vendor" (which can be regEx or fns).
+
+        Ignored files (not processed) are specified in
+        "conventions.ignored"
+
+
+CommonJS module wrapping
+
+    Brunch wraps your script files (unless they’re in vendor) as
+    CommonJS modules, therefore, your script in the files:
+
+     1. have access to exports, module.exports and require(…).
+
+     2. exist in a closure (all your explicit declarations, notably var
+        and function, are thus private. Because of this, you can declare
+        "use strict" at the top of your files, without fear of mandating
+        strict mode for third-party scripts.
+
+    Customizing:
+      • "modules.wrapper" and "modules.definition" specify the type of
+         wrapping you use (you can disable it).
+      • "modules.nameCleaner" lets you define how source file paths map
+        to module names.
+
+
