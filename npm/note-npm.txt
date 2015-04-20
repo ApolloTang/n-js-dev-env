@@ -1,0 +1,6 @@
+
+$npm ls -dept=0    #list package in current directory, one level dept only
+
+
+
+
