@@ -1,6 +1,7 @@
 branch note
 
 Installation:
+-------------
 
     In addition to install globally, you should also install
     branch locally.  This way you can use varous versions of
@@ -10,13 +11,14 @@ Installation:
     version.
 
 Skeleton:
+---------
 
     $ brunch new <skeleton git repo> <clone path>
 
     The above will clone from repo and followed by an npm install...
 
-
 Folder and files:
+-----------------
 
     app/
       • Contains the entire source codebase
@@ -48,20 +50,29 @@ Folder and files:
 
     Customizing:
 
-        Source paths can be changed through an array of
-        names/paths in the "paths.watched" setting.
+        paths.watched
+            describe the base path(s) to watch.
+            default value is ['app', 'test', 'vendor']
 
-        The target folder is set by "paths.public".
+        conventions.vendor
+          • Specifies the directories contain JS not to
+            to be wrapped in modules.
+          • can be regEx or fns.
+          • If you include Bower dir, be aware that
+            the components installed with Bower is never wrapped.
 
-        Special-treatment folders are defined
-        through "conventions.assets" and
-        "conventions.vendor" (which can be regEx or fns).
+        conventions.assets
+            defines what folders get copy as-is.
 
-        Ignored files (not processed) are specified in
-        "conventions.ignored"
+        paths.public
+            defines target folder
+
+        conventions.ignored
+            defines files to ignore during processing
 
 
 CommonJS module wrapping
+------------------------
 
     Brunch wraps your script files (unless they’re in vendor) as
     CommonJS modules, therefore, your script in the files:
@@ -73,10 +84,22 @@ CommonJS module wrapping
         "use strict" at the top of your files, without fear of mandating
         strict mode for third-party scripts.
 
+    module name:
+    ------------
+
+      • By default, modules are named from their path inside the watched
+        paths.
+      • If you only have one such path, it won’t prefix module names.
+      • If you have many such paths, their path's basename will
+        prefix module names.
+      • The file extension is not used, this lets you use whatever script
+        syntax you’d like (e.g. CoffeeScript or TypeScript).
+
     Customizing:
       • "modules.wrapper" and "modules.definition" specify the type of
          wrapping you use (you can disable it).
       • "modules.nameCleaner" lets you define how source file paths map
         to module names.
+
 
 
